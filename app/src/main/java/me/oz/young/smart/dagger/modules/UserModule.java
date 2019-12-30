@@ -3,12 +3,14 @@ package me.oz.young.smart.dagger.modules;
 import android.content.Context;
 import android.util.Log;
 
+
 import dagger.Module;
 import dagger.Provides;
+import me.oz.young.smart.dagger.entities.SimCard;
 import me.oz.young.smart.dagger.entities.Phone;
 import me.oz.young.smart.dagger.entities.User;
 
-@Module
+@Module(includes = SimCardModule.class)
 public class UserModule {
 
     private Context mContext;
@@ -24,19 +26,22 @@ public class UserModule {
 //        return user;
 //    }
 
+//    @Singleton
     public UserModule(Context context) {
         Log.d(TAG, "UserModule Construct >> " + context);
         this.mContext = context;
     }
 
     @Provides
-    public Phone providerPhone() {
+//    @Singleton
+    public Phone providerPhone(SimCard client) {
         Phone phone = new Phone();
         phone.setNumber("15507718189");
         return phone;
     }
 
     @Provides
+//    @Singleton
     public User providerUserPhone(Phone phone) {
         User user = new User();
         user.setName("Ozz");

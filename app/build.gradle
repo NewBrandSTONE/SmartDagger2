@@ -33,4 +33,7 @@ dependencies {
     api 'com.google.dagger:dagger-android-support:2.25.3'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.25.3'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.3'
+
+    // okHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
 }
