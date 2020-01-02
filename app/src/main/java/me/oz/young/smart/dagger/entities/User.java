@@ -1,6 +1,10 @@
 package me.oz.young.smart.dagger.entities;
 
-
+/**
+ * 用户对象
+ *
+ * @author 01380154
+ */
 public class User {
 
     private int age;

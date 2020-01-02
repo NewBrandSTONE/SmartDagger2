@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import me.oz.young.smart.dagger.components.DaggerUserComponent;
 import me.oz.young.smart.dagger.entities.User;
+import me.oz.young.smart.dagger.modules.HttpModule;
 import me.oz.young.smart.dagger.modules.SimCardModule;
 import me.oz.young.smart.dagger.modules.UserModule;
 
@@ -24,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        DaggerUserComponent.create().inject(this);
         DaggerUserComponent.builder()
                 .userModule(new UserModule(this))
                 .simCardModule(new SimCardModule())
+                .httpModule(new HttpModule())
                 .build()
                 .inject(this);
+
         Log.d(TAG, "user>> " + user);
     }
 }
