@@ -6,12 +6,9 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import me.oz.young.smart.dagger.components.DaggerUserComponent;
-import me.oz.young.smart.dagger.entities.User;
-import me.oz.young.smart.dagger.modules.SimCardModule;
-import me.oz.young.smart.dagger.modules.UserModule;
+import me.oz.young.smart.dagger.components.DaggerRoleComponent;
+import me.oz.young.smart.dagger.entities.Role;
 
 /**
  * MainActivity
@@ -20,23 +17,22 @@ import me.oz.young.smart.dagger.modules.UserModule;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private String TAG = getClass().getSimpleName();
+    @Inject
+    Role role1;
 
     @Inject
-    @Named("release")
-    User user;
+    Role role2;
+
+    private String TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DaggerUserComponent.builder()
-                .userModule(new UserModule(this))
-                .simCardModule(new SimCardModule())
-                .build()
-                .inject(this);
+        DaggerRoleComponent.create().inject(this);
 
-        Log.d(TAG, "user>> " + user);
+        Log.d(TAG, "onCreate: 1 " + role1);
+        Log.d(TAG, "onCreate: 2 " + role2);
     }
 }
